@@ -1,1 +1,13 @@
+<h1>All Groups:</h1>
+<br>
+<% @all_groups.each do |group| %>
+  <%= "#{group.name} - #{group.created_at.strftime('%I:%M%P  %B %d, %Y')}" %>
+  <br>
+<% end %>
+<br>
+<br>
 <h1>Your Groups:</h1>
+<% @your_groups.each do |group| %>
+  <%= "#{group.name} - #{group.created_at.strftime('%I:%M%P  %B %d, %Y')}" %>
+  <br>
+<% end %>

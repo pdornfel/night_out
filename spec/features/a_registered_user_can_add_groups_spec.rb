@@ -11,6 +11,8 @@ feature "A registered user can create groups => " do
     fill_in "Group Name", with: group.name
     click_button "Create Group"
     expect(page).to have_content("Group successfully created")
+    expect(page).to have_content("Ballers")
+    expect(new_user.groups.count).to eql 1
   end
 
 end
