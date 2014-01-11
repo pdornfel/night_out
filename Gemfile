@@ -32,6 +32,21 @@ group :doc do
   gem 'sdoc', require: false
 end
 
+group :development, :test do
+  gem 'rspec-rails'
+  gem 'factory_girl_rails'
+  gem 'valid_attribute'
+  gem 'shoulda-matchers'
+  gem 'pry-rails'
+  gem 'capybara'
+  gem 'launchy'
+  gem 'quiet_assets'
+end
+
+gem 'devise'
+gem 'simple_form'
+
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
 

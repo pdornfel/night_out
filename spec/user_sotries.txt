@@ -1,0 +1,13 @@
+As an unregistered user
+I want to be able to sign up
+So i can be admitted into the site
+
+
+As a registered user
+I want to be able to create groups
+So I can begin creating groups of friends
+
+As a member of a group
+I want to create an event
+so members of my group can attend
+
