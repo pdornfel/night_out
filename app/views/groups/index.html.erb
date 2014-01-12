@@ -1,13 +1,11 @@
 <h1>All Groups:</h1>
-<br>
-<% @all_groups.each do |group| %>
-  <%= "#{group.name} - #{group.created_at.strftime('%I:%M%P  %B %d, %Y')}" %>
-  <br>
-<% end %>
-<br>
-<br>
+<h3><%= link_to "Create Group", new_group_path %></h3>
 <h1>Your Groups:</h1>
 <% @your_groups.each do |group| %>
   <%= "#{group.name} - #{group.created_at.strftime('%I:%M%P  %B %d, %Y')}" %>
+  <%= "Creator: #{group.creator}" %><br>
+  <%= "Members #{group.users.count}" %><br>
+  <%= link_to "Show Group", group_path(group) %>
+  <br>
   <br>
 <% end %>

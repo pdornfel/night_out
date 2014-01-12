@@ -2,9 +2,16 @@ NightOut::Application.routes.draw do
 
   root to: 'groups#index'
 
-  resources :groups
+  resources :groups do
+    resources :memberships, only: [:create, :destroy]
+   end
+
+  resources :memberships
+
+
 
   devise_for :users
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

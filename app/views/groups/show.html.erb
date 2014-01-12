@@ -1,0 +1,12 @@
+<h1><%= @group.name %></h1>
+
+<%= simple_form_for [@group, @membership], controller: :membership, action: :create do |f| %>
+  <%= f.text_field :email %>
+  <%= f.button :submit %>
+<% end %>
+
+<h4>Users:</h4>
+<% @members.each do |member| %>
+  <%= member.first_name %>
+  <%= member.last_name %><br>
+<% end %>
