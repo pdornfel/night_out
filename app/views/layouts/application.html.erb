@@ -10,7 +10,9 @@
 
 <% if user_signed_in? %>
   <%= link_to "Sign Out", destroy_user_session_path, method: :delete %><br>
-  <%= "logged in as: #{current_user.first_name} #{current_user.last_name}" %>
+  <%= link_to "All Groups", groups_path %><br>
+  <%= "logged in as: #{current_user.first_name} #{current_user.last_name}" %><br>
+    <%= current_user.email %>
 <% end %>
 
 <% flash.each do |name, msg| -%>

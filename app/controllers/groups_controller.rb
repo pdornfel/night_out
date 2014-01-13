@@ -3,8 +3,18 @@ class GroupsController < ApplicationController
   before_filter :authenticate_user!
 
   def index
-    @all_groups = current_user.groups
     @your_groups = current_user.groups
+  end
+
+  def edit
+    @group = Group.find(params[:id])
+  end
+
+  def destroy
+    @group = Group.find(params[:id])
+    @group.destroy
+    flash[:notice] = "#{@group.name} deleted"
+    redirect_to groups_path
   end
 
   def show
@@ -19,8 +29,7 @@ class GroupsController < ApplicationController
 
   def create
     @group = current_user.groups.build(group_params)
-    @group.creator = "#{current_user.first_name} #{current_user.last_name}"
-    # @group.users << current_user
+    @group.creator = current_user
     if @group.save
       flash[:notice] = "Group successfully created"
       redirect_to groups_path

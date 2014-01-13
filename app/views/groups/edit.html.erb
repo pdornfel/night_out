@@ -1,0 +1,9 @@
+<h1><%= @group.name %></h1>
+
+<p><%= link_to "Destroy Group", @group, method: :delete %></p>
+<p><%= link_to "Back", group_path(@group) %></p>
+<br>
+<% @group.users.each do |member| %>
+  <%= "#{member.first_name} #{member.last_name}" %>
+  <%= link_to "Remove Member", group_membership_path(@group, member), method: :delete %><br><br>
+<% end %>

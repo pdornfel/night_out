@@ -14,7 +14,7 @@ feature "A registered user can add other registered users to groups" do
       expect(page).to have_content("Group successfully created")
       expect(page).to have_content("Ballers")
       visit group_path(group)
-      fill_in "Add User", with: user2.email
+      fill_in "membership_email", with: user2.email
     end
 
 end

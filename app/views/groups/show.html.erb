@@ -1,8 +1,9 @@
 <h1><%= @group.name %></h1>
+<p><%= link_to "Edit Group", edit_group_path(@group) %></p>
 
 <%= simple_form_for [@group, @membership], controller: :membership, action: :create do |f| %>
-  <%= f.text_field :email %>
-  <%= f.button :submit %>
+  <%= f.text_field :email  %>
+  <%= f.button :submit, "Add Member" %>
 <% end %>
 
 <h4>Users:</h4>
