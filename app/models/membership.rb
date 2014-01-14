@@ -9,6 +9,8 @@ class Membership < ActiveRecord::Base
   validates_presence_of :user
   validates_presence_of :group
 
+  validates_uniqueness_of :user_id, scope: :group_id, message: 'User already exists in that group'
+
 
 
   # setter dummy method
