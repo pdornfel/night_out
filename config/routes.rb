@@ -4,11 +4,11 @@ NightOut::Application.routes.draw do
 
   resources :groups do
     resources :memberships, only: [:create, :destroy]
+    resources :events
    end
 
   resources :memberships
-
-
+  resources :events
 
   devise_for :users
 

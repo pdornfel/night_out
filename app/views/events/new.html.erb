@@ -1,0 +1,11 @@
+<h1>New Event</h1>
+
+<%= link_to "Group", groups_path %>
+<br><br>
+<%= simple_form_for [@group, @event] do |f| %>
+
+  <%= f.input :name %>
+  <%= f.input :time %>
+  <%= f.button :submit %>
+
+<% end %>

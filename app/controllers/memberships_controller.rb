@@ -9,13 +9,14 @@ class MembershipsController < ApplicationController
       # flash[:notice] = "Member already exists in that group"
       # redirect_to groups_path(group)
     if @membership.save
+      flash[:notice] = "User has been added to the group!"
       redirect_to group_path(group)
     elsif @membership.user_id == nil
       flash[:notice] = "User does not exist"
-      redirect_to groups_path(group)
+      redirect_to group_path(group)
     else
       flash[:notice] = "User already belongs to group"
-      redirect_to groups_path(group)
+      redirect_to group_path(group)
     end
   end
 

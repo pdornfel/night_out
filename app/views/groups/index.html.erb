@@ -1,6 +1,5 @@
-<h1>All Groups:</h1>
-<h3><%= link_to "Create Group", new_group_path %></h3>
 <h1>Your Groups:</h1>
+<h4><%= link_to "Create Group", new_group_path %></h4>
 <% @your_groups.each do |group| %>
   <%= "#{group.name} - #{group.created_at.strftime('%I:%M%P  %B %d, %Y')}" %>
   <%= "Creator: #{group.creator.first_name}" %><br>
