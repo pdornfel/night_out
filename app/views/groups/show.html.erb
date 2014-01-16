@@ -1,13 +1,18 @@
+<!-- Groups Controller -->
+
 <h1><%= @group.name %></h1>
-<p><%= link_to "Your Groups", groups_path %></p>
 <p><%= link_to "Edit Group", edit_group_path(@group) %></p>
-<br>
-<br>
 <p><%= link_to "Add Event", new_group_event_path(@group) %></p>
 
 <%= simple_form_for [@group, @membership], controller: :membership, action: :create do |f| %>
-  <%= f.text_field :email  %>
+  <%= f.input :email  %>
   <%= f.button :submit, "Add Member" %>
+<% end %>
+<br>
+<%= simple_form_for [@group, @event], controller: :event, action: :create do |f| %>
+  <%= f.input :name, label: "Event Name"  %>
+  <%= f.input :time %>
+  <%= f.button :submit %>
 <% end %>
 
 <h4>Users:</h4>
@@ -15,9 +20,8 @@
   <%= member.first_name %>
   <%= member.last_name %><br>
 <% end %>
-<br>
-<h4>Events</h4>
+<h4>Events:</h4>
 <% @events.each do |event| %>
-  <%= event.name %>
-  <%= event.time %><br>
+  <%= link_to "#{event.name}", event_path(event) %><br>
+  <%= event.time.strftime(' %I:%M%P  %B %d,  %Y') %><br>
 <% end %>

@@ -13,10 +13,16 @@ class EventsController < ApplicationController
       flash[:notice] = "Event Created Successfully"
       redirect_to group_path(group)
     else
-      render 'new'
+      redirect_to group_path(group)
     end
   end
 
+  def show
+    @event = Event.find(params[:id])
+    @group = @event.group
+    @proposed_location = ProposedLocation.new
+    @proposed_locations = @event.proposed_locations
+  end
 
   private
 

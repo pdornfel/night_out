@@ -21,6 +21,7 @@ class GroupsController < ApplicationController
     @group = Group.find(params[:id])
     @members = @group.users
     @membership = Membership.new
+    @event = Event.new
     @events = @group.events
   end
 

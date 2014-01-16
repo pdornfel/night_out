@@ -8,7 +8,10 @@ NightOut::Application.routes.draw do
    end
 
   resources :memberships
-  resources :events
+
+  resources :events do
+    resources :proposed_locations
+  end
 
   devise_for :users
 

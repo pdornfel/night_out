@@ -1,0 +1,15 @@
+<!-- Events Controller -->
+
+<h1><%= @event.name %></h1>
+<p><%= link_to "#{@group.name}", group_path(@group) %></p>
+<br>
+<h4><%= @event.time.strftime(' %I:%M%P  %B %d,  %Y') %></h4>
+<br>
+<%= simple_form_for [@event, @proposed_location] do |f| %>
+  <%= f.input :name, label: "Location" %>
+  <%= f.button :submit %>
+<% end %>
+<br>
+<% @proposed_locations.each do |location| %>
+  <%= location.name %><br>
+<% end %>
