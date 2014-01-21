@@ -1,12 +1,11 @@
 <!-- Events Controller -->
 <h1>New Event</h1>
 
-<%= link_to "Group", groups_path %>
+<%= link_to "Group", group_path(@group) %>
 <br><br>
-<%= simple_form_for [@group, @event] do |f| %>
-
-  <%= f.input :name %>
-  <%= f.input :time %>
+<%= simple_form_for [@group, @event], controller: :event, action: :create do |f| %>
+  <%= f.input :name, label: "Event Name"  %>
+  <%= f.input :fakedate, label: "Date", input_html: { class: 'datepicker'}, as: :string %>
+  <%= f.input :faketime, label: "Time", input_html: { class: 'timepicker'}, as: :string %>
   <%= f.button :submit %>
-
 <% end %>

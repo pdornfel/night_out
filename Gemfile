@@ -45,6 +45,7 @@ end
 
 gem 'devise'
 gem 'simple_form'
+gem 'pickadate-rails'
 
 
 # Use ActiveModel has_secure_password

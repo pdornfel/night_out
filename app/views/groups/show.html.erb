@@ -4,14 +4,15 @@
 <p><%= link_to "Edit Group", edit_group_path(@group) %></p>
 <p><%= link_to "Add Event", new_group_event_path(@group) %></p>
 
-<%= simple_form_for [@group, @membership], controller: :membership, action: :create do |f| %>
+<%= simple_form_for [@group, @membership] do |f| %>
   <%= f.input :email  %>
   <%= f.button :submit, "Add Member" %>
 <% end %>
 <br>
-<%= simple_form_for [@group, @event], controller: :event, action: :create do |f| %>
+<%= simple_form_for [@group, @event] do |f| %>
   <%= f.input :name, label: "Event Name"  %>
-  <%= f.input :time %>
+  <%= f.input :fakedate, label: "Date", input_html: { class: 'datepicker'}, as: :string %>
+  <%= f.input :faketime, label: "Time", input_html: { class: 'timepicker'}, as: :string %>
   <%= f.button :submit %>
 <% end %>
 

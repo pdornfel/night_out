@@ -7,12 +7,14 @@ class EventsController < ApplicationController
 
   def create
     @event = Event.new(event_params)
+    # @event.set_time((params[:event][:fakedate]), params[:event][:faketime])
     group = Group.find(params[:group_id])
     @event.group = Group.find(params[:group_id])
     if @event.save
       flash[:notice] = "Event Created Successfully"
       redirect_to group_path(group)
     else
+      flash[:notice] = "Unable to save Event"
       redirect_to group_path(group)
     end
   end
@@ -27,7 +29,7 @@ class EventsController < ApplicationController
   private
 
   def event_params
-    params.require(:event).permit(:name, :time)
+    params.require(:event).permit(:name, :time, :faketime, :fakedate)
   end
 
 end
