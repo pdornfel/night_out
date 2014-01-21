@@ -11,5 +11,7 @@
 <% end %>
 <br>
 <% @proposed_locations.each do |location| %>
-  <%= location.name %><br>
+  <%= link_to "+1", votes_path, method: :post %><br>
+  <%= location.name %>:
+  <%= location.votes.count %><br><br>
 <% end %>

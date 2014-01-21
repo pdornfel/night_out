@@ -7,7 +7,6 @@ class EventsController < ApplicationController
 
   def create
     @event = Event.new(event_params)
-    # @event.set_time((params[:event][:fakedate]), params[:event][:faketime])
     group = Group.find(params[:group_id])
     @event.group = Group.find(params[:group_id])
     if @event.save
@@ -24,6 +23,7 @@ class EventsController < ApplicationController
     @group = @event.group
     @proposed_location = ProposedLocation.new
     @proposed_locations = @event.proposed_locations
+
   end
 
   private

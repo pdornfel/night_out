@@ -9,6 +9,8 @@ NightOut::Application.routes.draw do
 
   resources :memberships
 
+  resources :votes
+
   resources :events do
     resources :proposed_locations
   end

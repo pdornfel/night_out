@@ -9,7 +9,9 @@ class Event < ActiveRecord::Base
   has_many :proposed_locations
 
   def set_time
-    self.time = DateTime.strftime()
+    t = "#{@faketime}, #{@fakedate}"
+    f = DateTime.parse(t)
+    self.time = f
   end
 
   def faketime
