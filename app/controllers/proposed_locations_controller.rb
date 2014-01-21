@@ -12,7 +12,6 @@ class ProposedLocationsController < ApplicationController
     end
   end
 
-
   private
 
   def location_params

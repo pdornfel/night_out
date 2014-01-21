@@ -11,7 +11,12 @@
 <% end %>
 <br>
 <% @proposed_locations.each do |location| %>
+<% if location.votes.find_by(user: current_user) %>
+  <%= link_to "-1", proposed_location_vote_path(location, location.votes.find_by(user: current_user)), method: :delete %><br>
+<% else %>
   <%= link_to "+1", proposed_location_votes_path(location), method: :post %><br>
-  <%= location.name %>:
-  <%= location.votes.count %><br><br>
 <% end %>
+<%= location.name %>:
+<%= location.votes.count %><br><br>
+<% end %>
+

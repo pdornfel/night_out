@@ -10,8 +10,10 @@ class Event < ActiveRecord::Base
 
   def set_time
     t = "#{@faketime}, #{@fakedate}"
-    f = DateTime.parse(t)
-    self.time = f
+    if t != ", "
+      f = DateTime.parse(t)
+      self.time = f
+    end
   end
 
   def faketime
