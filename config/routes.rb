@@ -5,15 +5,18 @@ NightOut::Application.routes.draw do
   resources :groups do
     resources :memberships, only: [:create, :destroy]
     resources :events
-   end
+  end
 
-  resources :memberships
-
-  resources :votes
+  resources :proposed_locations do
+    resources :votes
+  end
 
   resources :events do
     resources :proposed_locations
   end
+
+  resources :memberships
+  resources :votes
 
   devise_for :users
 
