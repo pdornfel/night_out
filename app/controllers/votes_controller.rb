@@ -16,10 +16,14 @@ def create
 end
 
   def destroy
-    event = ProposedLocation.find(params[:proposed_location_id]).event
-    @vote = Vote.find_by(id: params[:id])
-    @vote.destroy
-    redirect_to event_path(event)
+    vote = Vote.find(params[:id])
+    vote.destroy
+    flash[:notice] = "Vote deleted"
+    redirect_to :back
+    # event = ProposedLocation.find(params[:proposed_location_id]).event
+    # @vote = Vote.find_by(id: params[:id])
+    # @vote.destroy
+    # redirect_to event_path(event)
   end
 
 end

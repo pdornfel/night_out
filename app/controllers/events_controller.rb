@@ -23,6 +23,7 @@ class EventsController < ApplicationController
     @group = @event.group
     @proposed_location = ProposedLocation.new
     @proposed_locations = @event.proposed_locations
+    @vote = current_user.votes.find_by(event_id: params[:id])
   end
 
   private
