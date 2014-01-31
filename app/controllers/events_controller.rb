@@ -23,7 +23,6 @@ class EventsController < ApplicationController
     @group = @event.group
     @proposed_location = ProposedLocation.new
     @proposed_locations = @event.proposed_locations
-
   end
 
   private

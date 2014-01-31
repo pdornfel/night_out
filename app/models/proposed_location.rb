@@ -4,6 +4,6 @@ class ProposedLocation < ActiveRecord::Base
 
   belongs_to :event
 
-  has_many :votes
+  has_many :votes, dependent: :destroy
   has_many :users, through: :votes
 end

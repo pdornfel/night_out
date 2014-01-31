@@ -4,6 +4,7 @@ def create
   event = ProposedLocation.find(params[:proposed_location_id]).event
   @vote = Vote.new
   @vote.user = current_user
+  @vote.event = event
   @vote.proposed_location_id = params[:proposed_location_id]
   if @vote.save
     flash[:notice] = "Your vote is heard"

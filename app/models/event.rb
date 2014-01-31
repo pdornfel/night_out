@@ -7,6 +7,7 @@ class Event < ActiveRecord::Base
 
   belongs_to :group
   has_many :proposed_locations
+  has_many :votes
 
   def set_time
     t = "#{@faketime}, #{@fakedate}"

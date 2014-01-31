@@ -5,5 +5,7 @@ describe Event do
   it { should belong_to :group }
   it { should have_many :proposed_locations }
 
+  it { should have_many :votes }
+
 
 end
