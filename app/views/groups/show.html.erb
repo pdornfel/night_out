@@ -2,27 +2,67 @@
 
 <h1><%= @group.name %></h1>
 <p><%= link_to "Edit Group", edit_group_path(@group) %></p>
-<p><%= link_to "Add Event", new_group_event_path(@group) %></p>
 
-<%= simple_form_for [@group, @membership] do |f| %>
-  <%= f.input :email  %>
-  <%= f.button :submit, "Add Member" %>
-<% end %>
-<br>
-<%= simple_form_for [@group, @event] do |f| %>
-  <%= f.input :name, label: "Event Name"  %>
-  <%= f.input :fakedate, label: "Date", input_html: { class: 'datepicker'}, as: :string %>
-  <%= f.input :faketime, label: "Time", input_html: { class: 'timepicker'}, as: :string %>
-  <%= f.button :submit %>
-<% end %>
+<div class='row'>
+  <div class='large-4 columns'>
 
-<h4>Users:</h4>
-<% @members.each do |member| %>
-  <%= member.first_name %>
-  <%= member.last_name %><br>
-<% end %>
-<h4>Events:</h4>
-<% @events.each do |event| %>
-  <%= link_to "#{event.name}", event_path(event) %><br>
-  <%= event.time.strftime(' %I:%M%P  %B %d,  %Y') %><br>
-<% end %>
+      <%= simple_form_for [@group, @event] do |f| %>
+        <%= f.input :name, label: "Event Name"  %>
+        <%= f.input :fakedate, label: "Date", input_html: { class: 'datepicker'}, as: :string %>
+        <%= f.input :faketime, label: "Time", input_html: { class: 'timepicker'}, as: :string %>
+        <%= f.button :submit, class: "button" %>
+      <% end %>
+
+  </div>
+  <div class='large-4 columns'>
+
+    <%= simple_form_for [@group, @membership] do |f| %>
+      <%= f.input :email  %>
+      <%= f.button :submit, "Add Member", class: 'button' %>
+    <% end %>
+
+  </div>
+
+  <div class='large-2 columns'>
+
+      <table>
+        <thead>
+          <tr>
+            <th width="200">Members</th>
+          </tr>
+        </thead>
+        <% @members.each do |member| %>
+        <tbody>
+          <tr>
+            <td><%= "#{member.first_name} #{member.last_name}" %></td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+
+  </div>
+  <div class='large-12 columns'>
+
+      <table>
+        <thead>
+          <tr>
+            <th width="200">Event</th>
+            <th>Most voted on location</th>
+            <th width="150">Starts at</th>
+            <th width="150">Creator</th>
+          </tr>
+        </thead>
+        <% @events.each do |event| %>
+        <tbody>
+          <tr>
+            <td><%= link_to "#{event.name}", event_path(event) %></td>
+            <td>Location</td>
+            <td><%= event.time.strftime(' %I:%M%P  %B %d,  %Y') %></td>
+            <td>Creator</td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+
+  </div>
+</div>

@@ -13,7 +13,7 @@ class GroupsController < ApplicationController
   def destroy
     @group = Group.find(params[:id])
     @group.destroy
-    flash[:notice] = "#{@group.name} deleted"
+    flash[:alert] = "#{@group.name} deleted"
     redirect_to groups_path
   end
 
@@ -22,7 +22,7 @@ class GroupsController < ApplicationController
     @members = @group.users
     @membership = Membership.new
     @event = Event.new
-    @events = @group.events
+    @events = @group.events.order(created_at: :desc)
   end
 
   def new
@@ -33,7 +33,7 @@ class GroupsController < ApplicationController
     @group = current_user.groups.build(group_params)
     @group.creator = current_user
     if @group.save
-      flash[:notice] = "Group successfully created"
+      flash[:success] = "Group successfully created"
       redirect_to groups_path
     else
       render 'new'

@@ -10,10 +10,10 @@ class EventsController < ApplicationController
     group = Group.find(params[:group_id])
     @event.group = Group.find(params[:group_id])
     if @event.save
-      flash[:notice] = "Event Created Successfully"
+      flash[:success] = "Event Created Successfully"
       redirect_to group_path(group)
     else
-      flash[:notice] = "Unable to save Event"
+      flash[:alert] = "Unable to save Event"
       redirect_to group_path(group)
     end
   end
