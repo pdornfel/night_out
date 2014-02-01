@@ -26,6 +26,19 @@ class EventsController < ApplicationController
     @vote = current_user.votes.find_by(event_id: params[:id])
   end
 
+  def edit
+    @event = Event.find(params[:id])
+    @group = @event.group
+  end
+
+  def update
+    event = Event.find(params[:id])
+    event.update(event_params)
+    group = Group.find(params[:group_id])
+    flash[:success] = "Group Updated"
+    redirect_to group_path(group)
+  end
+
   private
 
   def event_params

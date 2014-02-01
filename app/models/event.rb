@@ -37,9 +37,12 @@ include ActionView::Helpers::DateHelper
   end
 
   def countdown
-    seconds = Time.now - time
-    time_ago_in_words(seconds.from_now)
-    # time.strftime(' %I:%M%P  %B %d,  %Y')
+    seconds = time - Time.now
+    if seconds > 0
+      "#{time_ago_in_words(seconds.from_now)} from now"
+    else
+      "Event has ended"
+    end
   end
 
 end

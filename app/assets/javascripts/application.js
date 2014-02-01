@@ -23,4 +23,5 @@ $( document ).ready(function() {
   $('.datepicker').pickadate();
   $('.timepicker').pickatime();
 });
-$(function(){ $(document).foundation(); });
+
+// $(function(){ $(document).foundation(); });

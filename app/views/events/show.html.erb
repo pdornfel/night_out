@@ -2,6 +2,7 @@
 
 <h1><%= @event.name %></h1>
 <p><%= link_to "#{@group.name}", group_path(@group) %></p>
+<p><%= link_to "Edit Event", edit_event_path(@event) %>
 <br>
 <h4><%= @event.time.strftime(' %I:%M%P  %B %d,  %Y') %></h4>
 <br>
