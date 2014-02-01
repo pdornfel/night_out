@@ -1,5 +1,7 @@
 class Event < ActiveRecord::Base
 
+include ActionView::Helpers::DateHelper
+
   before_validation :set_time
 
   validates_presence_of :name
@@ -32,6 +34,12 @@ class Event < ActiveRecord::Base
 
   def fakedate=(fakedate)
     @fakedate = fakedate
+  end
+
+  def countdown
+    seconds = Time.now - time
+    time_ago_in_words(seconds.from_now)
+    # time.strftime(' %I:%M%P  %B %d,  %Y')
   end
 
 end

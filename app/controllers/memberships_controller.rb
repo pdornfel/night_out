@@ -15,7 +15,7 @@ class MembershipsController < ApplicationController
       flash[:alert] = "User does not exist"
       redirect_to group_path(group)
     else
-      flash[:alert] = "User already belongs to group"
+      flash[:warning] = "User already belongs to group"
       redirect_to group_path(group)
     end
   end

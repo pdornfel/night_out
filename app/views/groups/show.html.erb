@@ -46,19 +46,17 @@
       <table>
         <thead>
           <tr>
-            <th width="200">Event</th>
-            <th>Most voted on location</th>
-            <th width="150">Starts at</th>
-            <th width="150">Creator</th>
+            <th width="200">Event:</th>
+            <th width="250">Countdown:</th>
+            <th>Most Voted On location:</th>
           </tr>
         </thead>
         <% @events.each do |event| %>
         <tbody>
           <tr>
             <td><%= link_to "#{event.name}", event_path(event) %></td>
+            <td><%= "#{event.countdown} from now" %></td>
             <td>Location</td>
-            <td><%= event.time.strftime(' %I:%M%P  %B %d,  %Y') %></td>
-            <td>Creator</td>
           </tr>
         <% end %>
         </tbody>
