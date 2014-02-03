@@ -7,6 +7,8 @@ describe User do
   it { should have_many(:votes) }
   it { should have_many(:proposed_locations).through(:votes) }
 
+  it { should have_many(:comments).dependent(:destroy) }
+
 
 
 end

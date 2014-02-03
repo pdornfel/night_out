@@ -1,32 +1,34 @@
 <!-- Events Controller -->
 
-<h1><%= @event.name %></h1>
-<p><%= link_to "#{@group.name}", group_path(@group) %></p>
-<p><%= link_to "Edit Event", edit_event_path(@event) %>
-<br>
-<h4><%= @event.time.strftime(' %I:%M%P  %B %d,  %Y') %></h4>
-<br>
-<%= simple_form_for [@event, @proposed_location] do |f| %>
-  <%= f.input :name, label: "Location" %>
-  <%= f.button :submit, class: 'button' %>
-<% end %>
-<br>
+<div class='row'>
+  <div class='large-6 columns'>
 
-<% if @vote %>
-  <%= link_to "Destroy Vote", vote_path(@vote), method: :delete, class: "button" %>
-  <%= "You voted for: #{@vote.find_location(@vote)}" %>
-<% end %>
-<br>
-<% @proposed_locations.each do |location| %>
-  <% unless @vote %>
-    <%= link_to "+1", proposed_location_votes_path(location), method: :post %><br>
-  <% end %>
-  <%= location.name %>:
-  <%= location.votes.count %><br><br>
-<% end %>
+      <h1><%= @event.name %></h1>
+      <p>back to group: <%= link_to "#{@group.name}", group_path(@group) %></p>
+      <p><%= link_to "Edit Event", edit_event_path(@event) %></p>
+      <br>
+      <h4><%= @event.time.strftime(' %I:%M%P  %B %d,  %Y') %></h4>
+      <br>
 
+      <%= simple_form_for [@event, @proposed_location] do |f| %>
+        <%= f.input :name, label: "Location" %>
+        <%= f.button :submit, class: 'button' %>
+      <% end %>
 
-  <!-- location.votes.find_by(user: current_user) %>
-   link_to "-1", proposed_location_vote_path(location, location.votes.find_by(user: current_user)), method: :delete %> -->
+      <% if @vote %>
+        <%= link_to "Destroy Vote", vote_path(@vote), method: :delete, class: "button" %>
+        <%= "You voted for: #{@vote.find_location(@vote)}" %>
+      <% end %>
+      <br>
+      <% @proposed_locations.each do |location| %>
+        <% unless @vote %>
+          <%= link_to "+1", proposed_location_votes_path(location), method: :post %><br>
+        <% end %>
+        <%= location.name %>:
+        <%= location.votes.count %><br><br>
+      <% end %>
+
+  </div>
+</div>
 
 

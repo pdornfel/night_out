@@ -2,6 +2,9 @@ class Event < ActiveRecord::Base
 
 include ActionView::Helpers::DateHelper
 
+  has_many :comments,
+    dependent: :destroy
+
   before_validation :set_time
 
   validates_presence_of :name
