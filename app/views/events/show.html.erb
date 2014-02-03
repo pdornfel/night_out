@@ -28,6 +28,10 @@
         <%= location.votes.count %><br><br>
       <% end %>
 
+      <% @event.comments.each do |comment| %>
+        <%= comment.body %><br>
+      <% end %>
+
   </div>
 </div>
 

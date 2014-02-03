@@ -41,6 +41,7 @@ group :development, :test do
   gem 'capybara'
   gem 'launchy'
   gem 'quiet_assets'
+  gem 'mailcatcher'
 end
 
 gem 'devise'
