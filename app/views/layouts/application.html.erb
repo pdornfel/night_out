@@ -26,7 +26,9 @@
     <ul class="right">
       <li class="active"><a href="#"></a></li>
       <li class="has-dropdown">
-        <a href="#"></a>
+<% if user_signed_in? %>
+        <%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
+<% end %>
         <ul class="dropdown">
           <li><a href="#"></a></li>
         </ul>

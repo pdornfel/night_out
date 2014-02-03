@@ -37,9 +37,11 @@ include ActionView::Helpers::DateHelper
   end
 
   def countdown
-    seconds = time - Time.now
+    # fixed for eastern standard...18000 to offset UTC time mismatch
+    seconds = time - DateTime.now.utc+18000
+
     if seconds > 0
-      "#{time_ago_in_words(seconds.from_now)} from now"
+      "#{time_ago_in_words((time - DateTime.now.utc+18000).from_now)} from now"
     else
       "Event has ended"
     end
