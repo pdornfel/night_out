@@ -49,14 +49,16 @@
             <th width="200">Event:</th>
             <th width="250">Countdown:</th>
             <th>Most Voted On location:</th>
+            <th># of votes:</th>
           </tr>
         </thead>
         <% @events.each do |event| %>
         <tbody>
           <tr>
             <td><%= link_to "#{event.name}", event_path(event) %></td>
-            <td><%= "#{event.countdown}" %></td>
-            <td>Location</td>
+            <td><%= event.countdown %></td>
+            <td><%= event.location %></td>
+            <td><%= event.count %></td>
           </tr>
         <% end %>
         </tbody>

@@ -8,6 +8,7 @@ class ProposedLocationsController < ApplicationController
       flash[:notice] = "Location has been proposed"
       redirect_to event_path(@event)
     else
+      flash[:alert] = "Location must have name"
       redirect_to event_path(@event)
     end
   end

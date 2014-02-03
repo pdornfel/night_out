@@ -47,20 +47,32 @@ include ActionView::Helpers::DateHelper
     end
   end
 
+  def location
+    actual_location = nil
+    count = 0
+    proposed_locations.each do |location|
+      if location.votes.count > count
+        actual_location = location
+        count = location.votes.count
+      end
+    end
+    if actual_location == nil
+      "NO VOTES CASTED YET"
+    else
+      actual_location.name
+    end
+  end
+
+  def count
+    actual_location = nil
+    count = 0
+    proposed_locations.each do |location|
+      if location.votes.count > count
+        actual_location = location
+        count = location.votes.count
+      end
+    end
+    count
+  end
+
 end
-
-
-# [1] pry(#<Event>)> @faketime
-# => "12:00 AM"
-# [2] pry(#<Event>)> @fakedate
-# => "16 January, 2014"
-# [3] pry(#<Event>)> time
-# => nil
-# [4] pry(#<Event>)> DateTime.new(2013, 4, 5)
-# => Fri, 05 Apr 2013 00:00:00 +0000
-# [5] pry(#<Event>)> d = DateTime.new(2013, 4, 5)
-# => Fri, 05 Apr 2013 00:00:00 +0000
-# [6] pry(#<Event>)> d.strftime('%Y %m')
-# => "2013 04"
-# [7] pry(#<Event>)> d = DateTime.new(2014, 1, 16, 12, 00, 00)
-# => Thu, 16 Jan 2014 12:00:00 +0000
