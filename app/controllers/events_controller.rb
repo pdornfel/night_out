@@ -19,6 +19,7 @@ class EventsController < ApplicationController
   end
 
   def show
+    @comment = Comment.new
     @event = Event.find(params[:id])
     @group = @event.group
     @proposed_location = ProposedLocation.new

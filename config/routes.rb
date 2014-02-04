@@ -13,6 +13,7 @@ NightOut::Application.routes.draw do
 
   resources :events do
     resources :proposed_locations
+    resources :comments
   end
 
   resources :memberships

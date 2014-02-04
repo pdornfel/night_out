@@ -1,8 +1,8 @@
 <!-- Events Controller -->
 
 <div class='row'>
-  <div class='large-6 columns'>
 
+  <div class='large-6 columns'>
       <h1><%= @event.name %></h1>
       <p>back to group: <%= link_to "#{@group.name}", group_path(@group) %></p>
       <p><%= link_to "Edit Event", edit_event_path(@event) %></p>
@@ -27,12 +27,24 @@
         <%= location.name %>:
         <%= location.votes.count %><br><br>
       <% end %>
+  </div>
 
+  <div class='large-6 columns right'>
+  <br>
+  <br>
       <% @event.comments.each do |comment| %>
-        <%= comment.body %><br>
+        <div class='panel callout radius'>
+          <strong><%= comment.author %></strong><br><br>
+          <%= comment.body %><br><br>
+        </div>
       <% end %>
 
+    <%= simple_form_for [@event, @comment] do |f| %>
+      <%= f.text_field :body %>
+      <%= f.button :submit, class: 'button' %>
+    <% end %>
   </div>
+
 </div>
 
 
