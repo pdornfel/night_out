@@ -1,21 +1,28 @@
-<h1>Your Groups:</h1>
 
-<h4><%= link_to "Create Group", new_group_path %></h4>
+<div class='row'>
+  <div class='large 12 columns'>
 
 
-      <table>
-        <thead>
-          <tr>
-            <th width="200">Group Name</th>
-            <th width="200">Members</th>
-          </tr>
-        </thead>
-        <% @your_groups.each do |group| %>
-        <tbody>
-          <tr>
-            <td><%= link_to "#{group.name}", group_path(group) %></td>
-            <td><%= group.users.count %></td>
-          </tr>
-        <% end %>
-        </tbody>
-      </table>
+      <h1>Your Groups:</h1>
+
+      <h4><%= link_to "Create Group", new_group_path %></h4>
+
+
+            <table>
+              <thead>
+                <tr>
+                  <th width="200">Group Name</th>
+                  <th width="200">Members</th>
+                </tr>
+              </thead>
+              <% @your_groups.each do |group| %>
+              <tbody>
+                <tr>
+                  <td><%= link_to "#{group.name}", group_path(group) %></td>
+                  <td><%= group.users.count %></td>
+                </tr>
+              <% end %>
+              </tbody>
+            </table>
+    </div>
+</div>

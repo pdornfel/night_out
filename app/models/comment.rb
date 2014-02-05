@@ -8,7 +8,7 @@ class Comment < ActiveRecord::Base
   validates_presence_of :body
 
   def author
-    user.first_name
+    user
   end
 
 end

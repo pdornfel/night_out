@@ -8,6 +8,7 @@
       <p><%= link_to "Edit Event", edit_event_path(@event) %></p>
       <br>
       <h4><%= @event.time.strftime(' %I:%M%P  %B %d,  %Y') %></h4>
+      <h4><strong><%= @event.location %></strong></h4>
       <br>
 
       <%= simple_form_for [@event, @proposed_location] do |f| %>
@@ -16,7 +17,7 @@
       <% end %>
 
       <% if @vote %>
-        <%= link_to "Destroy Vote", vote_path(@vote), method: :delete, class: "button" %>
+        <%= link_to "Destroy Vote", vote_path(@vote), method: :delete, class: "button [tiny small large secondary alert]" %>
         <%= "You voted for: #{@vote.find_location(@vote)}" %>
       <% end %>
       <br>
@@ -34,8 +35,13 @@
   <br>
       <% @event.comments.each do |comment| %>
         <div class='panel callout radius'>
-          <strong><%= comment.author %></strong><br><br>
-          <%= comment.body %><br><br>
+          <strong><%= comment.author.first_name %></strong><br><br>
+          <%= comment.body %>
+    <% if current_user == comment.author %>
+          <div class='right'>
+            <%= link_to "Delete comment", event_comment_path(@event, comment), method: :delete, data: {confirm: "Are you Sure?"} %>
+          </div>
+    <% end %>
         </div>
       <% end %>
 
@@ -44,6 +50,8 @@
       <%= f.button :submit, class: 'button' %>
     <% end %>
   </div>
+
+
 
 </div>
 

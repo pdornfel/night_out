@@ -1,7 +1,19 @@
+<!-- Events Controller -->
+
+<div class='row'>
+  <div class='large-10 columns'>
+
 <br>
-<%= simple_form_for [@group, @event], controller: :event, action: :create do |f| %>
-  <%= f.input :name, label: "Event Name"  %>
-  <%= f.input :fakedate, label: "Date", input_html: { class: 'datepicker'}, as: :string %>
-  <%= f.input :faketime, label: "Time", input_html: { class: 'timepicker'}, as: :string %>
-  <%= f.button :submit, class: 'button' %>
-<% end %>
+<h3><%= link_to "Back", event_path(@event) %></h3>
+<br>
+<br>
+
+    <%= simple_form_for [@group, @event], controller: :event, action: :create do |f| %>
+      <%= f.input :name, label: "Event Name"  %>
+      <%= f.input :fakedate, label: "Date", input_html: { class: 'datepicker'}, as: :string %>
+      <%= f.input :faketime, label: "Time", input_html: { class: 'timepicker'}, as: :string %>
+      <%= f.button :submit, class: 'button' %>
+    <% end %>
+
+  </div>
+</div>
