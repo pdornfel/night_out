@@ -2,12 +2,7 @@ class MembershipsController < ApplicationController
 
   def create
     group = current_user.groups.find(params[:group_id])
-    # @membership = Membership.new(membership_params)
-
     @membership = group.memberships.build(membership_params)
-    # if
-      # flash[:notice] = "Member already exists in that group"
-      # redirect_to groups_path(group)
     if @membership.save
       flash[:success] = "User has been added to the group!"
       redirect_to group_path(group)
