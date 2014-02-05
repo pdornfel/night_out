@@ -1,10 +1,21 @@
-<h1><%= @group.name %></h1>
+<div class='row'>
+  <div class='large-6 columns'>
 
-<p><%= link_to "Back", group_path(@group) %></p>
-<p><%= link_to "Destroy Group", @group, method: :delete, data: { confirm: "Are you sure?? This cannot be undone."} %></p>
+      <h1><%= @group.name %></h1>
 
-<br>
-<% @group.users.each do |member| %>
-  <%= "#{member.first_name} #{member.last_name}" %>
-  <%= link_to "Remove Member", group_membership_path(@group, member), method: :delete %><br><br>
-<% end %>
+          <%= simple_form_for @group do |f| %>
+            <%= f.input :name, label: "Edit Group Name" %>
+            <%= f.button :submit, class: 'button' %>
+          <% end %>
+
+      <p><%= link_to "Back", group_path(@group) %></p>
+      <p><%= link_to "Destroy Group", @group, method: :delete, data: { confirm: "Are you sure?? This cannot be undone."} %></p>
+
+      <br>
+      <% @group.users.each do |member| %>
+        <%= "#{member.first_name} #{member.last_name}" %>
+        <%= link_to "Remove Member", group_membership_path(@group, member), method: :delete %><br><br>
+      <% end %>
+
+  </div>
+</div>

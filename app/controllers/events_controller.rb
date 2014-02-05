@@ -1,5 +1,7 @@
 class EventsController < ApplicationController
 
+  before_action :your_groups
+
   def new
     @event = Event.new
     @group = Group.find(params[:group_id])
@@ -38,6 +40,10 @@ class EventsController < ApplicationController
     group = Group.find(params[:group_id])
     flash[:success] = "Group Updated"
     redirect_to group_path(group)
+  end
+
+  def your_groups
+    @your_groups = current_user.groups
   end
 
   private

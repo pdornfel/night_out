@@ -34,18 +34,18 @@
 
   </div>
 
-  <div class='large-2 columns'>
+  <div class='large-4 columns'>
 
       <table>
         <thead>
           <tr>
-            <th width="200">Members</th>
+            <th width="290">Members</th>
           </tr>
         </thead>
         <% @members.each do |member| %>
         <tbody>
           <tr>
-            <td><%= "#{member.first_name} #{member.last_name}" %></td>
+            <td width="290"><%= "#{member.first_name} #{member.last_name}" %></td>
           </tr>
         <% end %>
         </tbody>
@@ -59,8 +59,8 @@
           <tr>
             <th width="200">Event:</th>
             <th width="250">Countdown:</th>
-            <th>Most Voted On location:</th>
-            <th># of votes:</th>
+            <th width="250">Most Voted On location:</th>
+            <th width="250"># of votes:</th>
           </tr>
         </thead>
         <% @events.each do |event| %>

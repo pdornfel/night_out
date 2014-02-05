@@ -5,14 +5,14 @@
 
       <h1>Your Groups:</h1>
 
-      <h4><%= link_to "Create Group", new_group_path %></h4>
+      <h4><%= link_to "Create Group", new_group_path %></h4><br>
 
 
             <table>
               <thead>
                 <tr>
-                  <th width="200">Group Name</th>
-                  <th width="200">Members</th>
+                  <th width="320">Group Name</th>
+                  <th width="320">Members</th>
                 </tr>
               </thead>
               <% @your_groups.each do |group| %>

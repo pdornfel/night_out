@@ -1,6 +1,7 @@
 class GroupsController < ApplicationController
 
   before_filter :authenticate_user!
+  before_action :your_groups
 
   def index
     @your_groups = current_user.groups
@@ -8,6 +9,17 @@ class GroupsController < ApplicationController
 
   def edit
     @group = Group.find(params[:id])
+  end
+
+  def update
+    @group = Group.find(params[:id])
+    @group.update(group_params)
+    if @group.save
+      flash[:success] = "Group updated"
+      redirect_to group_path(@group)
+    else
+      redirect_to group_path(@group)
+    end
   end
 
   def destroy
@@ -18,6 +30,7 @@ class GroupsController < ApplicationController
   end
 
   def show
+    @your_groups = current_user.groups
     @group = Group.find(params[:id])
     @members = @group.users
     @membership = Membership.new
@@ -38,6 +51,10 @@ class GroupsController < ApplicationController
     else
       render 'new'
     end
+  end
+
+  def your_groups
+    @your_groups = current_user.groups
   end
 
   private

@@ -12,7 +12,7 @@
       <br>
 
       <%= simple_form_for [@event, @proposed_location] do |f| %>
-        <%= f.input :name, label: "Location" %>
+        <%= f.input :name, label: "Where do you want to go?" %>
         <%= f.button :submit, class: 'button' %>
       <% end %>
 
@@ -20,6 +20,7 @@
         <%= link_to "Destroy Vote", vote_path(@vote), method: :delete, class: "button [tiny small large secondary alert]" %>
         <%= "You voted for: #{@vote.find_location(@vote)}" %>
       <% end %>
+
       <br>
       <% @proposed_locations.each do |location| %>
         <% unless @vote %>
