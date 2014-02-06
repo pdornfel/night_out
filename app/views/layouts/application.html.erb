@@ -16,7 +16,7 @@
 <nav class="top-bar" data-topbar>
   <ul class="title-area">
     <li class="name">
-      <h1><a href="#">P-w-F</a></h1>
+      <h1><%= link_to "P-w-F", root_path%></h1>
     </li>
     <li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
   </ul>
@@ -40,7 +40,7 @@
       <li>
     <% if user_signed_in? %>
       <ul class="left">
-        <li><%= link_to "ALL GROUPS", root_path %></li>
+        <li><%= link_to "Home", root_path %></li>
         <% @your_groups.each do |group| %>
           <li><%= link_to "#{group.name}", group_path(group) %></li>
         <% end %>
