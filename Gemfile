@@ -36,6 +36,7 @@ gem 'devise'
 gem 'simple_form'
 gem 'pickadate-rails'
 gem 'foundation-rails'
+gem 'rails_12factor'
 
 ruby "2.0.0"
 
