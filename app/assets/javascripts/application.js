@@ -13,7 +13,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require foundation
-//= require turbolinks
 //= require pickadate/picker
 //= require pickadate/picker.date
 //= require pickadate/picker.time
