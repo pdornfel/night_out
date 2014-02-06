@@ -32,6 +32,13 @@ group :doc do
   gem 'sdoc', require: false
 end
 
+gem 'devise'
+gem 'simple_form'
+gem 'pickadate-rails'
+gem 'foundation-rails'
+
+ruby "2.0.0"
+
 group :development, :test do
   gem 'rspec-rails'
   gem 'factory_girl_rails'
@@ -43,12 +50,6 @@ group :development, :test do
   gem 'quiet_assets'
   gem 'mailcatcher'
 end
-
-gem 'devise'
-gem 'simple_form'
-gem 'pickadate-rails'
-gem 'foundation-rails'
-
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
