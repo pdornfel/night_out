@@ -35,7 +35,7 @@ end
 gem 'devise'
 gem 'simple_form'
 gem 'pickadate-rails'
-gem 'foundation-rails'
+gem "foundation-rails", "~> 5.0.2.0"
 gem 'rails_12factor', group: :production
 
 ruby "2.0.0"
