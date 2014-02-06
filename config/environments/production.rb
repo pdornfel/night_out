@@ -11,6 +11,10 @@ NightOut::Application.configure do
     :enable_starttls_auto => true
   }
 
+  ActionMailer::Base.delivery_method = :smtp
+
+  config.action_mailer.default_url_options = { :host => 'planwithfriends.herokuapp.com' }
+
   # Code is not reloaded between requests.
   config.cache_classes = true
 
