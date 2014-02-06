@@ -23,7 +23,7 @@ $(function(){ $(document).foundation(); });
 $( document ).ready(function() {
   $('.datepicker').pickadate();
   $('.timepicker').pickatime({
-    min: [17,00],
+    min: [9,00],
     max: [24,00]
   });
 });
