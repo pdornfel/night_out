@@ -2,9 +2,12 @@ NightOut::Application.routes.draw do
 
   root to: 'groups#index'
 
+
+
   resources :groups do
     resources :memberships, only: [:create, :destroy]
     resources :events
+    resources :invitations
   end
 
   resources :proposed_locations do

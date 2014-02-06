@@ -13,10 +13,10 @@
 
   <body>
 
-<nav class="top-bar fixed" data-topbar>
+<nav class="top-bar" data-topbar>
   <ul class="title-area">
     <li class="name">
-      <h1><%= link_to "Night-Out" %></h1>
+      <h1><a href="#">Night Out</a></h1>
     </li>
     <li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
   </ul>
@@ -24,29 +24,33 @@
   <section class="top-bar-section">
     <!-- Right Nav Section -->
     <ul class="right">
-      <li class="active"><a href="#"></a></li>
+      <li class="active">
+        <% if user_signed_in? %>
+          <%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
+        <% end %>
+      </li>
       <li class="has-dropdown">
-<% if user_signed_in? %>
-        <%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
-<% end %>
         <ul class="dropdown">
-          <li><a href="#"></a></li>
         </ul>
       </li>
     </ul>
 
     <!-- Left Nav Section -->
-  <% if user_signed_in? %>
+    <ul class="left">
+      <li>
+    <% if user_signed_in? %>
       <ul class="left">
-            <li><%= link_to "ALL GROUPS", root_path %></li>
-            <% @your_groups.each do |group| %>
-                  <li><%= link_to "#{group.name}", group_path(group) %></li>
-              <% end %>
-        </ul>
-  <% end %>
-
+        <li><%= link_to "ALL GROUPS", root_path %></li>
+        <% @your_groups.each do |group| %>
+          <li><%= link_to "#{group.name}", group_path(group) %></li>
+        <% end %>
+      </ul>
+      <% end %>
+      </li>
+    </ul>
   </section>
 </nav>
+
 
 
     <% flash.each do |name, msg| %>

@@ -19,9 +19,13 @@
 //= require pickadate/picker.time
 //= require_tree .
 
+$(function(){ $(document).foundation(); });
+
 $( document ).ready(function() {
   $('.datepicker').pickadate();
-  $('.timepicker').pickatime();
+  $('.timepicker').pickatime({
+    min: [17,00],
+    max: [24,00]
+  });
 });
 
-// $(function(){ $(document).foundation(); });
