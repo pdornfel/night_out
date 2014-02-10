@@ -22,14 +22,20 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    event = Event.find(params[:event_id])
     comment = Comment.find(params[:id])
     if comment.destroy
-      flash[:success] = "Comment destroyed"
-      redirect_to event_path(event)
+      if resource == "Event"
+          event = Event.find(params[:event_id])
+          flash[:success] = "Comment destroyed"
+          redirect_to event_path(event)
+        elsif resource == "Group"
+          group = Group.find(params[:group_id])
+          flash[:success] = "Comment destroyed"
+          redirect_to group_path(group)
+      end
     else
       flash[:alert] = "Unable to delete comment"
-      redirect_to event_path(event)
+      redirect_to :back
     end
   end
 
