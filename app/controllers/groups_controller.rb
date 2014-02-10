@@ -30,6 +30,7 @@ class GroupsController < ApplicationController
   end
 
   def show
+    @comment = Comment.new
     @your_groups = current_user.groups
     @group = Group.find(params[:id])
     @members = @group.users

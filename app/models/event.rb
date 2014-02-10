@@ -2,7 +2,7 @@ class Event < ActiveRecord::Base
 
 include ActionView::Helpers::DateHelper
 
-  has_many :comments,
+  has_many :comments, as: :commentable,
     dependent: :destroy
 
   before_validation :set_time

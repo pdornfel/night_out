@@ -75,5 +75,22 @@
         </tbody>
       </table>
 
+      <% @group.comments.each do |comment| %>
+        <div class='panel callout radius'>
+          <strong><%= comment.author.first_name %></strong><br><br>
+          <%= comment.body %>
+    <% if current_user == comment.author %>
+          <div class='right'>
+            <%= link_to "Delete comment", group_comment_path(@group, comment), method: :delete, data: {confirm: "Are you Sure?"} %>
+          </div>
+    <% end %>
+      </div>
+  <% end %>
+
+      <%= simple_form_for [@group, @comment] do |f| %>
+        <%= f.text_field :body %>
+        <%= f.button :submit, class: 'button' %>
+      <% end %>
+
   </div>
 </div>

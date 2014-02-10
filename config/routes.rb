@@ -8,6 +8,7 @@ NightOut::Application.routes.draw do
     resources :memberships, only: [:create, :destroy]
     resources :events
     resources :invitations
+    resources :comments
   end
 
   resources :proposed_locations do

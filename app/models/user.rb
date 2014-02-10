@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
 
-  has_many :comments,
+  has_many :comments, as: :commentable,
     dependent: :destroy
 
   has_many :memberships,
