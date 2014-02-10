@@ -50,7 +50,8 @@ class GroupsController < ApplicationController
       flash[:success] = "Group successfully created"
       redirect_to groups_path
     else
-      render 'new'
+      flash[:alert] = "Unable to create group!"
+      redirect_to root_path
     end
   end
 
