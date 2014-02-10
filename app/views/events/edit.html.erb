@@ -6,6 +6,8 @@
 <br>
 <h3><%= link_to "Back", event_path(@event) %></h3>
 <br>
+<h3><%= link_to "Destroy Event", group_event_path(@group, @event), method: :delete, data: {confirm: "Are you sure?"} %></h3>
+
 <br>
 
     <%= simple_form_for [@group, @event], controller: :event, action: :create do |f| %>

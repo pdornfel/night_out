@@ -46,6 +46,18 @@ class EventsController < ApplicationController
     @your_groups = current_user.groups
   end
 
+  def destroy
+    group = Group.find(params[:group_id])
+    event = Event.find(params[:id])
+    if event.destroy
+      flash[:warning] = "Event destroyed"
+      redirect_to group_path(group)
+    else
+      flash[:alert] = "Unable to delete event"
+      redirect_to group_path(group)
+    end
+  end
+
   private
 
   def event_params
