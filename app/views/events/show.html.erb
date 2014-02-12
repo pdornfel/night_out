@@ -35,7 +35,7 @@
   <br>
   <br>
       <% @event.comments.each do |comment| %>
-        <div class='panel callout radius'>
+        <div class='panel radius'>
           <strong><%= comment.author.first_name %></strong><br><br>
           <%= comment.body %>
     <% if current_user == comment.author %>
