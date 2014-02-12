@@ -9,7 +9,7 @@
       <br>
       <h4><%= @event.time.strftime(' %I:%M%P  %B %d,  %Y') %></h4>
       <h4><strong><%= @event.location %></strong></h4>
-      <br>
+      <h4>Proposed by:  <strong><%= @event.user.try(:first_name).try(:capitalize) %></strong></h4>
 
       <%= simple_form_for [@event, @proposed_location] do |f| %>
         <%= f.input :name, label: "Where do you want to go?" %>
@@ -34,10 +34,20 @@
   <div class='large-6 columns right'>
   <br>
   <br>
-      <% @event.comments.each do |comment| %>
+      <%= simple_form_for [@event, @comment] do |f| %>
+      <%= f.text_field :body %>
+      <%= f.button :submit, class: 'button' %>
+    <% end %>
+      <% @event.comments.order(created_at: :desc).each do |comment| %>
         <div class='panel radius'>
           <strong><%= comment.author.first_name %></strong><br><br>
           <%= comment.body %>
+          <div class='right'>
+            <%= comment.created_at.localtime.strftime('%I:%M%P  %B %d, %Y') %><br>
+          </div>
+          <br
+          <br>
+          <br>
     <% if current_user == comment.author %>
           <div class='right'>
             <%= link_to "Delete comment", event_comment_path(@event, comment), method: :delete, data: {confirm: "Are you Sure?"} %>
@@ -46,10 +56,6 @@
         </div>
       <% end %>
 
-    <%= simple_form_for [@event, @comment] do |f| %>
-      <%= f.text_field :body %>
-      <%= f.button :submit, class: 'button' %>
-    <% end %>
   </div>
 
 

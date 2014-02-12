@@ -9,13 +9,19 @@
           <% end %>
 
       <p><%= link_to "Back", group_path(@group) %></p>
+  <%if @group.creator == current_user %>
       <p><%= link_to "Destroy Group", @group, method: :delete, data: { confirm: "Are you sure?? This cannot be undone."} %></p>
+  <% end %>
 
       <br>
       <% @group.users.each do |member| %>
-        <%= "#{member.first_name} #{member.last_name}" %>
-        <%= link_to "Remove Member", group_membership_path(@group, member), method: :delete %><br><br>
+        <%= "#{member.first_name} #{member.last_name}" %><br>
+        <%= member.email %><br>
+      <%if @group.creator == current_user %>
+        <%= link_to "Remove Member", group_membership_path(@group, member), method: :delete %>
       <% end %>
+      <br><br>
+    <% end %>
 
   </div>
 </div>

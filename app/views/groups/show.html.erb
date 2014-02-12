@@ -51,12 +51,15 @@
         <thead>
           <tr>
             <th width="290">Members</th>
+            <th width="290">Email</th>
           </tr>
         </thead>
         <% @members.each do |member| %>
         <tbody>
           <tr>
             <td width="290"><%= "#{member.first_name} #{member.last_name}" %></td>
+            <td width="290"><%= member.email %></td>
+
           </tr>
         <% end %>
         </tbody>
@@ -81,6 +84,7 @@
             <th width="250">Countdown:</th>
             <th width="250">Most Voted On location:</th>
             <th width="250"># of votes:</th>
+            <th width="250">Proposed By:</th>
           </tr>
         </thead>
         <% @events.each do |event| %>
@@ -90,27 +94,32 @@
             <td><%= event.countdown %></td>
             <td><%= event.location %></td>
             <td><%= event.count %></td>
+            <td><%= event.user.try(:first_name).try(:capitalize) %></td>
           </tr>
         <% end %>
         </tbody>
       </table>
 
-      <% @group.comments.each do |comment| %>
-        <div class='panel radius'>
-          <strong><%= comment.author.first_name %></strong><br><br>
-          <%= comment.body %>
-    <% if current_user == comment.author %>
-          <div class='right'>
-            <%= link_to "Delete comment", group_comment_path(@group, comment), method: :delete, data: {confirm: "Are you Sure?"} %>
-          </div>
-    <% end %>
-      </div>
-  <% end %>
-
       <%= simple_form_for [@group, @comment] do |f| %>
         <%= f.text_field :body, placeholder: "Add a comment" %>
         <%= f.button :submit, class: 'button' %>
       <% end %>
+
+      <% @group.comments.order(created_at: :desc).each do |comment| %>
+        <div class='panel radius'>
+          <strong><%= comment.author.first_name %></strong><br><br>
+            <%= comment.body %>
+    <% if current_user == comment.author %>
+          <div class='right'>
+            <%= link_to "Delete comment", group_comment_path(@group, comment), method: :delete, data: {confirm: "Are you Sure?"} %>
+          </div>
+          <br><br>
+    <% end %>
+          <div class='right'>
+            <%= comment.created_at.localtime.strftime('%I:%M%P  %B %d, %Y') %>
+          </div>
+      </div>
+  <% end %>
 
   </div>
 </div>

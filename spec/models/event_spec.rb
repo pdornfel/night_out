@@ -7,6 +7,8 @@ describe Event do
 
   it { should have_many :votes }
 
+  it { should belong_to :user }
+
   it { should have_many(:comments).dependent(:destroy) }
 
 

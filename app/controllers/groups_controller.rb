@@ -32,7 +32,7 @@ class GroupsController < ApplicationController
   def show
     @nag = Nag.new
     @comment = Comment.new
-    @your_groups = current_user.groups
+    @your_groups = current_user.groups.order(created_at: :desc)
     @group = Group.find(params[:id])
     @members = @group.users
     @membership = Membership.new

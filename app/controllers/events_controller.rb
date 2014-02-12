@@ -11,6 +11,7 @@ class EventsController < ApplicationController
     @event = Event.new(event_params)
     group = Group.find(params[:group_id])
     @event.group = Group.find(params[:group_id])
+    @event.user = current_user
     if @event.save
       flash[:success] = "Event Created Successfully"
       redirect_to group_event_path(group, @event)

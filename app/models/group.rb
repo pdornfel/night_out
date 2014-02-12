@@ -30,7 +30,7 @@ class Group < ActiveRecord::Base
     end
 
     def last_nag_creator
-      creator = nags.last.try(:user).try(:first_name)
+      nags.last.try(:user).try(:first_name)
     end
 
 end
