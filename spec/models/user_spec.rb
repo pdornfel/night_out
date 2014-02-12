@@ -9,6 +9,6 @@ describe User do
 
   it { should have_many(:comments).dependent(:destroy) }
 
-
+  it { should have_many(:nags).dependent(:destroy) }
 
 end

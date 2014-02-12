@@ -4,12 +4,16 @@
 <div clas='large 10 columns'>
 
     <h1><%= @group.name %></h1>
-    <p><%= link_to "Edit Group", edit_group_path(@group) %></p>
-    <p><%= link_to "Back", root_path %></p>
+    <p>
+      <div class='top-links'>
+        <%= link_to "Edit Group", edit_group_path(@group) %>
+        <%= link_to "Back", root_path %>
+        <%= link_to "Nag this Group" %>
+      </div>
+    </p>
 
   </div>
 </div>
-
 
 
 <div class='row'>
@@ -21,21 +25,18 @@
         <%= f.input :faketime, label: "Time", input_html: { class: 'timepicker'}, as: :string %>
         <%= f.button :submit, class: "button" %>
       <% end %>
-
   </div>
-  <div class='large-4 columns'>
 
-    <%= simple_form_for [@group, @membership] do |f| %>
-      <%= f.input :email  %>
-      <%= f.button :submit, "Add Member", class: 'button' %>
+
+  <div class='large-4 columns'>
+    <%= simple_form_for [@group, @nag] do |f| %>
+      <%= f.text_field :body %>
+      <%= f.button :submit %>
     <% end %>
-
-    <div><%= link_to "Invite a friend", new_group_invitation_path(@group), data: { confirm: "Feature coming soon" } %></div>
-
   </div>
 
-  <div class='large-4 columns'>
 
+  <div class='large-4 columns'>
       <table>
         <thead>
           <tr>
@@ -51,9 +52,18 @@
         </tbody>
       </table>
 
-  </div>
-  <div class='large-12 columns'>
+      <%= simple_form_for [@group, @membership] do |f| %>
+        <%= f.input :email  %>
+        <%= f.button :submit, "Add Member", class: 'button' %>
+      <% end %>
 
+    <div>
+      <%= link_to "Invite a friend", new_group_invitation_path(@group), data: { confirm: "Feature coming soon" } %>
+    </div>
+  </div>
+
+
+  <div class='large-12 columns'>
       <table>
         <thead>
           <tr>

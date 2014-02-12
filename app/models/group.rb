@@ -18,4 +18,8 @@ class Group < ActiveRecord::Base
     has_many :events,
       dependent: :destroy
 
+    has_many :nags,
+      inverse_of: :group,
+      dependent: :destroy
+
 end

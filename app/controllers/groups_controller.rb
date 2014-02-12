@@ -30,6 +30,7 @@ class GroupsController < ApplicationController
   end
 
   def show
+    @nag = Nag.new
     @comment = Comment.new
     @your_groups = current_user.groups
     @group = Group.find(params[:id])

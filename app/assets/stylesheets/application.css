@@ -16,3 +16,7 @@
  *= require pickadate/default.time
  *= require_tree .
  */
+
+.top-links a {
+  margin: 10px;
+}
