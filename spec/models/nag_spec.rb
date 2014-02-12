@@ -7,4 +7,9 @@ describe Nag do
 
   it { should validate_presence_of :body }
 
+  it "sends a mailer to group members when a nag is created" do
+    nag = FactoryGirl.create(:nag)
+    expect(NagMailer).to eq 1
+  end
+
 end

@@ -6,6 +6,7 @@ class NagsController < ApplicationController
     nag.group = group
     nag.user = current_user
     if nag.save
+      NagMailer.send_message
       flash[:success] = "You nagged the group"
       redirect_to group_path(group)
     else

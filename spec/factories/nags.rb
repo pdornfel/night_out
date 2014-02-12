@@ -2,6 +2,8 @@
 
 FactoryGirl.define do
   factory :nag do
-    body "MyText"
+    body "Hey, Im nagging you!"
+    user
+    group
   end
 end
