@@ -22,4 +22,15 @@ class Group < ActiveRecord::Base
       inverse_of: :group,
       dependent: :destroy
 
+    def last_nag_time
+      last_nag = nags.last.try(:created_at).try(:localtime)
+      unless last_nag == nil
+        last_nag.strftime('%I:%M%P  %B %d, %Y')
+      end
+    end
+
+    def last_nag_creator
+      creator = nags.last.try(:user).try(:first_name)
+    end
+
 end

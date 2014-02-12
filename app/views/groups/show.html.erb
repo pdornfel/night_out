@@ -33,6 +33,16 @@
       <%= f.input_field :body, placeholder: "Whats naggin' you..."  %>
       <%= f.submit "Send Nag", class: "button [tiny small large secondary alert]" %>
     <% end %>
+    Last nag sent at:
+    <br>
+    <div class='highlight'><%= @group.last_nag_time %></div>
+    <br>
+    <br>
+    Last nag sent by:
+    <br>
+    <div class="highlight"><%= @group.last_nag_creator %></div>
+
+
   </div>
 
 
