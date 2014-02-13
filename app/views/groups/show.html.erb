@@ -66,8 +66,8 @@
       </table>
 
       <%= simple_form_for [@group, @membership] do |f| %>
-        <%= f.input :email, placeholder: "enter an email"  %>
-        <%= f.button :submit, "Add Member", class: 'button' %>
+        <%= f.input :email, placeholder: "enter a valid users email"  %>
+        <%= f.button :submit, "Add Member to Group", class: 'button' %>
       <% end %>
 
     <div>
