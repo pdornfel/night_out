@@ -12,7 +12,7 @@
       <h4>Proposed by:  <strong><%= @event.user.try(:first_name).try(:capitalize) %></strong></h4>
 
       <%= simple_form_for [@event, @proposed_location] do |f| %>
-        <%= f.input :name, label: "Where do you want to go?" %>
+        <%= f.input :name, label: "Where do you want to go?", placeholder: "Pick a Location" %>
         <%= f.button :submit, class: 'button' %>
       <% end %>
 
@@ -35,7 +35,7 @@
   <br>
   <br>
       <%= simple_form_for [@event, @comment] do |f| %>
-      <%= f.text_field :body %>
+      <%= f.text_field :body, placeholder: "add a comment" %>
       <%= f.button :submit, class: 'button' %>
     <% end %>
       <% @event.comments.order(created_at: :desc).each do |comment| %>

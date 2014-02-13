@@ -19,9 +19,9 @@
   <div class='large-4 columns'>
 
       <%= simple_form_for [@group, @event] do |f| %>
-        <%= f.input :name, label: "Event Name"  %>
-        <%= f.input :fakedate, label: "Date", input_html: { class: 'datepicker'}, as: :string %>
-        <%= f.input :faketime, label: "Time", input_html: { class: 'timepicker'}, as: :string %>
+        <%= f.input :name, label: "Event Name", placeholder: "Name"  %>
+        <%= f.input :fakedate, label: "Date", input_html: { class: 'datepicker'}, as: :string, placeholder: "Date" %>
+        <%= f.input :faketime, label: "Time", input_html: { class: 'timepicker'}, as: :string, placeholder: "Time" %>
         <%= f.button :submit, class: "button" %>
       <% end %>
   </div>
@@ -66,7 +66,7 @@
       </table>
 
       <%= simple_form_for [@group, @membership] do |f| %>
-        <%= f.input :email  %>
+        <%= f.input :email, placeholder: "enter an email"  %>
         <%= f.button :submit, "Add Member", class: 'button' %>
       <% end %>
 
@@ -102,7 +102,7 @@
       </table>
 
       <%= simple_form_for [@group, @comment] do |f| %>
-        <%= f.text_field :body, placeholder: "Add a comment" %>
+        <%= f.text_field :body, placeholder: "add a comment" %>
         <%= f.button :submit, class: 'button' %>
       <% end %>
 
