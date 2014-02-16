@@ -40,8 +40,7 @@ class CommentsController < ApplicationController
   end
 
   def resource
-    request.path.split('/')[1]
-    .singularize.classify
+    request.path.split('/')[1].singularize.classify
   end
 
   private

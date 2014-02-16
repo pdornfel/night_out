@@ -25,12 +25,12 @@ class Group < ActiveRecord::Base
     def last_nag_time
       last_nag = nags.last.try(:created_at).try(:localtime)
       unless last_nag == nil
-        last_nag.strftime('%I:%M%P  %B %d, %Y')
+        last_nag.strftime('%B %d, %Y at %I:%M %P')
       end
     end
 
     def last_nag_creator
-      nags.last.try(:user).try(:first_name)
+      nags.last.try(:user).try(:first_name).try(:capitalize)
     end
 
 end
