@@ -4,7 +4,10 @@ class GroupsController < ApplicationController
   before_action :your_groups
 
   def index
-    @your_groups = current_user.groups
+    if current_user.groups.include?(params[:id])
+      @your_groups = current_user.groups
+    else
+    end
   end
 
   def edit
@@ -30,14 +33,19 @@ class GroupsController < ApplicationController
   end
 
   def show
-    @nag = Nag.new
-    @comment = Comment.new
-    @your_groups = current_user.groups.order(created_at: :desc)
-    @group = Group.find(params[:id])
-    @members = @group.users
-    @membership = Membership.new
-    @event = Event.new
-    @events = @group.events.order(created_at: :desc)
+    if current_user.groups.exists?(params[:id])
+      @nag = Nag.new
+      @comment = Comment.new
+      @your_groups = current_user.groups.order(created_at: :desc)
+      @group = Group.find(params[:id])
+      @members = @group.users
+      @membership = Membership.new
+      @event = Event.new
+      @events = @group.events.order(created_at: :desc)
+    else
+      flash[:warning] = "Not a valid path"
+      redirect_to root_path
+    end
   end
 
   def new
@@ -56,11 +64,11 @@ class GroupsController < ApplicationController
     end
   end
 
+  private
+
   def your_groups
     @your_groups = current_user.groups
   end
-
-  private
 
   def group_params
     params.require(:group).permit(:name, :creator)
