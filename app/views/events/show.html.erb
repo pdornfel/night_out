@@ -43,7 +43,7 @@
           <strong><%= comment.author.first_name %></strong><br><br>
           <%= comment.body %>
           <div class='right'>
-            <%= comment.created_at.localtime.strftime('%I:%M%P  %B %d, %Y') %><br>
+            <%= comment.created_at.strftime('%I:%M%P  %B %d, %Y') %><br>
           </div>
           <br
           <br>
