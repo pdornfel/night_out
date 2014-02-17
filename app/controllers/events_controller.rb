@@ -22,12 +22,16 @@ class EventsController < ApplicationController
   end
 
   def show
-    @comment = Comment.new
     @event = Event.find(params[:id])
-    @group = @event.group
-    @proposed_location = ProposedLocation.new
-    @proposed_locations = @event.proposed_locations
-    @vote = current_user.votes.find_by(event_id: params[:id])
+    if current_user.groups.exists?(@event.group)
+      @comment = Comment.new
+      @group = @event.group
+      @proposed_location = ProposedLocation.new
+      @proposed_locations = @event.proposed_locations
+      @vote = current_user.votes.find_by(event_id: params[:id])
+    else
+      redirect_to root_path
+    end
   end
 
   def edit

@@ -43,8 +43,7 @@ class GroupsController < ApplicationController
       @event = Event.new
       @events = @group.events.order(created_at: :desc)
     else
-      flash[:warning] = "Not a valid path"
-      redirect_to root_path
+       redirect_to root_path
     end
   end
 
