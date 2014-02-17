@@ -70,9 +70,20 @@
         <%= f.button :submit, "Add Member to Group", class: 'button' %>
       <% end %>
 
-    <div>
-      <%= link_to "Invite a friend", new_group_invitation_path(@group), data: { confirm: "Feature coming soon" } %>
-    </div>
+    <a href="#" data-reveal-id="myModal" data-reveal>Invite a Friend</a>
+
+    <div id="myModal" class="reveal-modal" data-reveal>
+      <h2>Invite a Friend.</h2>
+        <div class="lead">
+          <%= simple_form_for [@group, @invitation] do |f| %>
+            <%= f.input :email %>
+            <%= f.button :submit, class: "button" %>
+          <% end %>
+        </div>
+        <p>Enter a valid email address to invite a someone to 'Plan with Friends'. They will be prompted to sign up and be added to this group.</p>
+        <a class="close-reveal-modal">&#215;</a>
+      </div>
+    <br>
     <br>
   </div>
 

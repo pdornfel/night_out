@@ -1,7 +1,8 @@
 <h3>You have been nagged</h3>
 
-Message: <%= @nag.body %>
+<h5>Message:</h5>
+<%= @nag.body %>
 <br>
 <br>
-Link to <%= link_to "Group", "planwithfriends.co/groups/#{@nag.group.id}" %>
+Link to <%= link_to "Group", root_url + "/groups/#{@nag.group.id}" %>
 

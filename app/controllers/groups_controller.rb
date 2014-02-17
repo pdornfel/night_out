@@ -34,6 +34,7 @@ class GroupsController < ApplicationController
 
   def show
     if current_user.groups.exists?(params[:id])
+      @invitation = Invitation.new
       @nag = Nag.new
       @comment = Comment.new
       @your_groups = current_user.groups.order(created_at: :desc)
