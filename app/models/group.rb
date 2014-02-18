@@ -25,7 +25,7 @@ class Group < ActiveRecord::Base
     def last_nag_time
       last_nag = nags.last.try(:created_at)
       unless last_nag == nil
-        last_nag.strftime('%B %d, %Y at %I:%M %P')
+        last_nag.strftime('%I:%M %P on %B %d, %Y')
       end
     end
 
