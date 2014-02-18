@@ -15,7 +15,6 @@
  *= require styles
  *= require pickadate/default.date
  *= require pickadate/default.time
- *= require_self
  *= require_tree .
  */
 
