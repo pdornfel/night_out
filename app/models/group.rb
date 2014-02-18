@@ -23,7 +23,7 @@ class Group < ActiveRecord::Base
       dependent: :destroy
 
     def last_nag_time
-      last_nag = nags.last.try(:created_at).try(:localtime)
+      last_nag = nags.last.try(:created_at)
       unless last_nag == nil
         last_nag.strftime('%B %d, %Y at %I:%M %P')
       end
