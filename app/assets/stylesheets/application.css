@@ -12,6 +12,7 @@
  *= require foundation_and_overrides
 
  *= require pickadate/default
+ *= require styles
  *= require pickadate/default.date
  *= require pickadate/default.time
  *= require_tree .
