@@ -15,6 +15,15 @@ NightOut::Application.configure do
 
   config.action_mailer.default_url_options = { :host => 'planwithfriends.herokuapp.com' }
 
+  # getting images to load on heroku
+  config.cache_classes = true
+  config.serve_static_assets = true
+  config.assets.compile = true
+  config.assets.digest = true
+  config.action_controller.perform_caching = true
+  config.assets.initialize_on_precompile = true
+  #flipped config serve static assets to TRUE
+
   # Code is not reloaded between requests.
   config.cache_classes = true
 
@@ -26,7 +35,6 @@ NightOut::Application.configure do
 
   # Full error reports are disabled and caching is turned on.
   config.consider_all_requests_local       = false
-  config.action_controller.perform_caching = true
 
   # Enable Rack::Cache to put a simple HTTP cache in front of your application
   # Add `rack-cache` to your Gemfile before enabling this.
@@ -35,7 +43,6 @@ NightOut::Application.configure do
 
   # Disable Rails's static asset server (Apache or nginx will already do this).
   config.serve_static_assets = true
-  config.assets.initialize_on_precompile = true
 
   # Compress JavaScripts and CSS.
   config.assets.js_compressor = :uglifier
