@@ -16,12 +16,9 @@ NightOut::Application.configure do
   config.action_mailer.default_url_options = { :host => 'planwithfriends.herokuapp.com' }
 
   # getting images to load on heroku
-  config.cache_classes = true
-  config.serve_static_assets = true
-  config.assets.compile = true
-  config.assets.digest = true
-  config.action_controller.perform_caching = true
-  config.assets.initialize_on_precompile = true
+    config.serve_static_assets = true
+    config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect'
+    config.assets.compile = true
   #flipped config serve static assets to TRUE
 
   # Code is not reloaded between requests.
