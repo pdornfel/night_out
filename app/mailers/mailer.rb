@@ -1,9 +1,15 @@
-class NagMailer < ActionMailer::Base
+class Mailer < ActionMailer::Base
 
-  def send_message(nag)
+  def send_nag(nag)
     @nag = nag
     emails = format_email
     mail from: "admin@planwithfriends.com", to: emails, subject: "You just got nagged"
+  end
+
+  def send_invitation(email, group)
+    @group = Group.find(group)
+    @email = email
+    mail from: "admin@planwithfriends.com", to: email, subject: "You have been invited to Plan With Friends"
   end
 
   private

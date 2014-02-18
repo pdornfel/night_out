@@ -6,9 +6,11 @@ class InvitationsController < ApplicationController
   end
 
   def create
-    @group = Group.find(params[:group_id])
-    flash[:alert] = "Feature coming soon"
-    redirect_to group_path(@group)
+    group = Group.find(params[:group_id])
+    invitation_email = params[:invitation][:email]
+    Mailer.send_invitation(invitation_email, group.id)
+    flash[:info] = "You invited #{invitation_email}"
+    redirect_to group_path(group)
   end
 
 

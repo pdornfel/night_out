@@ -17,10 +17,3 @@
  *= require_tree .
  */
 
-.top-links a {
-  margin: 10px;
-}
-
-.highlight {
-  background-color: lightyellow;
-}
