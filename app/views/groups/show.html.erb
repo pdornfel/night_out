@@ -22,7 +22,7 @@
         <%= f.input :name, label: "Event Name", placeholder: "Name"  %>
         <%= f.input :fakedate, label: "Date", input_html: { class: 'datepicker'}, as: :string, placeholder: "Date" %>
         <%= f.input :faketime, label: "Time", input_html: { class: 'timepicker'}, as: :string, placeholder: "Time" %>
-        <%= f.button :submit, class: "button" %>
+        <%= f.button :submit, class: "button small success" %>
       <% end %>
   </div>
 
@@ -31,7 +31,7 @@
     <%= simple_form_for [@group, @nag] do |f| %>
       <%= f.hint "Sending a 'nag' will generate an email to the entire group." %><br><br>
       <%= f.input_field :body, placeholder: "Whats naggin' you..."  %>
-      <%= f.submit "Send Nag", class: "button [tiny small large secondary alert]" %>
+      <%= f.submit "Send Nag", class: "button tiny secondary" %>
     <% end %>
     Last nag sent at:
     <br>
@@ -68,7 +68,7 @@
 
       <%= simple_form_for [@group, @membership] do |f| %>
         <%= f.input :email, placeholder: "enter a valid users email"  %>
-        <%= f.button :submit, "Add Member to Group", class: 'button' %>
+        <%= f.button :submit, "Add Member to Group", class: 'button tiny' %>
       <% end %>
 
     <a href="#" data-reveal-id="myModal" data-reveal>Invite a Friend</a>
@@ -78,7 +78,7 @@
         <div class="lead">
           <%= simple_form_for [@group, @invitation] do |f| %>
             <%= f.input :email %>
-            <%= f.button :submit, class: "button" %>
+            <%= f.button :submit, class: "button small" %>
           <% end %>
         </div>
         <p>Enter a valid email address to invite someone to 'Plan with Friends'. They will be prompted to sign up and be added to this group.</p>
@@ -115,7 +115,7 @@
 
       <%= simple_form_for [@group, @comment] do |f| %>
         <%= f.text_field :body, placeholder: "add a comment" %>
-        <%= f.button :submit, class: 'button' %>
+        <%= f.button :submit, class: 'button tiny secondary' %>
       <% end %>
 
       <% @group.comments.order(created_at: :desc).each do |comment| %>
