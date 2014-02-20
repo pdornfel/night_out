@@ -2,8 +2,8 @@
 
 FactoryGirl.define do
   factory :invitation do
-    first_name "MyString"
-    last_name "MyString"
-    email "MyString"
+    first_name "Paul"
+    last_name "Dornfeld"
+    email "pdornfel@gmail.com"
   end
 end

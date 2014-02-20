@@ -6,7 +6,6 @@ describe Invitation do
 
   it "Should send an email to the inputted user" do
     invitation = FactoryGirl.create(:invitation)
-
   end
 
 end
