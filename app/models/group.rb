@@ -13,12 +13,12 @@ class Group < ActiveRecord::Base
     inverse_of: :groups,
     foreign_key: 'creator_id'
 
-    belongs_to :creator, class_name: 'User', foreign_key: 'creator_id'
+  belongs_to :creator, class_name: 'User', foreign_key: 'creator_id'
 
-    has_many :events,
+  has_many :events,
       dependent: :destroy
 
-    has_many :nags,
+  has_many :nags,
       inverse_of: :group,
       dependent: :destroy
 
