@@ -49,6 +49,18 @@
         <% @your_groups.each do |group| %>
           <li><%= link_to "#{group.name}", group_path(group) %></li>
         <% end %>
+        <li class="has-form">
+          <div class="row collapse">
+            <div class="large-8 small-9 columns">
+              <%= form_tag("/profiles", method: 'get') do %>
+                <%= text_field_tag 'search', nil, placeholder: "Find a user" %>
+              <% end %>
+            </div>
+            <div class="large-4 small-3 columns">
+              <%= submit_tag('Search', class: 'button alert') %>
+            </div>
+          </div>
+        </li>
       </ul>
       <% end %>
       </li>

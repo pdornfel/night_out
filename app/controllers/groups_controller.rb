@@ -4,10 +4,6 @@ class GroupsController < ApplicationController
   before_action :your_groups
 
   def index
-    if current_user.groups.include?(params[:id])
-      @your_groups = current_user.groups
-    else
-    end
   end
 
   def edit
