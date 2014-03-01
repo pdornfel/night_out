@@ -1,6 +1,7 @@
 class ProfilesController < ApplicationController
 
   skip_before_action :your_groups, :valid_request, only: [:show]
+  before_action :your_groups
   before_filter :authenticate_user!
 
 
@@ -31,6 +32,10 @@ class ProfilesController < ApplicationController
   end
 
   def find_users
+  end
+
+  def your_groups
+    @your_groups = current_user.groups
   end
 
 end
