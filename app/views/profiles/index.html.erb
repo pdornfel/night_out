@@ -1,0 +1,16 @@
+<h1><%= "Found #{@users.count} Profile(s)"%></h1>
+
+<table>
+  <thead>
+    <tr>
+      <td>Users</td>
+    </tr>
+  </thead>
+  <tbody>
+  <tr>
+  <% @users.each do |user| %>
+    <td> <h3><%= link_to "#{user.first_name} #{user.last_name}", profile_path(user) %></h3></td>
+  </tr>
+  <% end %>
+  </tbody>
+

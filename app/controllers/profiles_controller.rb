@@ -10,13 +10,8 @@ class ProfilesController < ApplicationController
   end
 
   def index
-    @users = find_users
-    if @users
-      redirect_to profiles_path
-    else
-      flash[:secondary] = "Feature Coming Soon"
-      redirect_to root_path
-    end
+    criteria = params[:search]
+    @users = find_users(criteria)
   end
 
   private
@@ -31,7 +26,8 @@ class ProfilesController < ApplicationController
     end
   end
 
-  def find_users
+  def find_users(criteria)
+    User.where("first_name = ? OR last_name = ?", criteria, criteria)
   end
 
   def your_groups
