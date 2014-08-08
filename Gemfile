@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+ruby "2.0.0"
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.2'
 
@@ -32,14 +34,9 @@ group :doc do
   gem 'sdoc', require: false
 end
 
-gem 'devise'
-gem 'simple_form'
-gem 'pickadate-rails'
-gem "foundation-rails", "~> 5.0.2.0"
-gem 'rails_12factor', group: :production
-gem 'chronic'
-
-ruby "2.0.0"
+group :production do
+  gem 'rails_12factor'
+end
 
 group :development, :test do
   gem 'rspec-rails'
@@ -51,7 +48,14 @@ group :development, :test do
   gem 'launchy'
   gem 'quiet_assets'
   gem 'mailcatcher'
+  gem 'dotenv-rails'
 end
+
+gem 'devise'
+gem 'simple_form'
+gem 'pickadate-rails'
+gem "foundation-rails", "~> 5.0.2.0"
+gem 'chronic'
 
 
 # Use ActiveModel has_secure_password
