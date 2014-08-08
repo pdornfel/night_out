@@ -113,10 +113,12 @@
         </tbody>
       </table>
 
-      <%= simple_form_for [@group, @comment] do |f| %>
-        <%= f.text_field :body, placeholder: "add a comment" %>
-        <%= f.button :submit, class: 'button tiny secondary' %>
-      <% end %>
+      <div id='comment_form'>
+        <%= simple_form_for([@group, @comment], remote: true) do |f| %>
+          <%= f.text_field :body, placeholder: "add a comment" %>
+          <%= f.button :submit, class: 'button tiny secondary' %>
+        <% end %>
+      </div>
 
       <% @group.comments.order(created_at: :desc).each do |comment| %>
         <div class='panel radius'>

@@ -1,0 +1,11 @@
+$(document).ready(function() {
+  $('#comment_form').on('click', 'button', function() {
+      url = document.URL
+      body = $(this).find('#comment_body').text()
+      
+      $.ajax(url, {
+        method: 'post',
+        data: body
+      });
+  });
+});

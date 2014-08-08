@@ -5,21 +5,38 @@ class CommentsController < ApplicationController
   def create
       comment = commentable.comments.new(comment_params)
       comment.user = current_user
+
+      respond_to do |format|
         if comment.save
-            if resource == 'Event'
-              event = Event.find(params[:event_id])
-              flash[:success] = "Nice comment!"
-              redirect_to event_path(event)
-            elsif resource == 'Group'
-              group = Group.find(params[:group_id])
-              flash[:success] = "Nice comment!"
-              redirect_to group_path(group)
-            end
+          # format.json { render json: comment, status: :created, location } 
         else
-          flash[:alert] = "Unable to save comment"
-          redirect_to :back
+          # format.json { render json: comment.errors, status: :unprocessable_entity }
         end
+      end
   end
+
+
+
+
+#   if comment.save
+#       if resource == 'Event'
+#         event = Event.find(params[:event_id])
+#         flash[:success] = "Nice comment!"
+#         redirect_to event_path(event)
+#       elsif resource == 'Group'
+#         group = Group.find(params[:group_id])
+#         flash[:success] = "Nice comment!"
+#         redirect_to group_path(group)
+#       end
+#   else
+#     flash[:alert] = "Unable to save comment"
+#     redirect_to :back
+#   end
+# end
+
+
+
+
 
   def destroy
     comment = Comment.find(params[:id])
