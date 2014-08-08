@@ -1,11 +1,19 @@
 $(document).ready(function() {
+  
   $('#comment_form').on('click', 'button', function() {
       url = document.URL
       body = $(this).find('#comment_body').text()
       
       $.ajax(url, {
         method: 'post',
-        data: body
+        data: body,
+        dataType: 'json',
+        success: function(response) {
+          alert("got success")
+        },
+        error: function(response) {
+          alert("got an error")
+        }
       });
   });
 });

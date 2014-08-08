@@ -3,19 +3,17 @@ class CommentsController < ApplicationController
   before_filter :commentable
 
   def create
-      comment = commentable.comments.new(comment_params)
-      comment.user = current_user
+      @comment = commentable.comments.new(comment_params)
+      @comment.user = current_user
 
       respond_to do |format|
-        if comment.save
-          # format.json { render json: comment, status: :created, location } 
+        if @comment.save
+          format.json { render json: @comment }
         else
-          # format.json { render json: comment.errors, status: :unprocessable_entity }
+          format.json { render json: @comment.errors }
         end
       end
   end
-
-
 
 
 #   if comment.save
@@ -33,9 +31,6 @@ class CommentsController < ApplicationController
 #     redirect_to :back
 #   end
 # end
-
-
-
 
 
   def destroy
