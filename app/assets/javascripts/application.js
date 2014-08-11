@@ -16,7 +16,7 @@
 //= require pickadate/picker
 //= require pickadate/picker.date
 //= require pickadate/picker.time
-//= require groups/group.js.erb
+//= require groups/group
 //= require_tree .
 
 $(function(){ $(document).foundation(); });

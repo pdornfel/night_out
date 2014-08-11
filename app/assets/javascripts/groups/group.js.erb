@@ -1,18 +1,16 @@
 $(document).ready(function() {
   
-  $('#comment_form').on('click', 'button', function() {
-      url = document.URL
-      body = $(this).find('#comment_body').text()
-      
-      $.ajax(url, {
+  $('#new_comment').on('submit', function(e) {
+      e.preventDefault();
+      $.ajax({
+        url: this.action,
         method: 'post',
-        data: body,
+        data: $(this).serialize(),
         dataType: 'json',
         success: function(response) {
-          alert("got success")
+          $('#comments_list').prepend(response.body)
         },
         error: function(response) {
-          alert("got an error")
         }
       });
   });
