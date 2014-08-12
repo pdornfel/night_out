@@ -8,46 +8,21 @@ class CommentsController < ApplicationController
 
       respond_to do |format|
         if @comment.save
-          format.json { render json: @comment }
+          format.json { render json: @comment.to_json(include: :user) }
         else
           format.json { render json: @comment.errors }
         end
       end
   end
 
-
-#   if comment.save
-#       if resource == 'Event'
-#         event = Event.find(params[:event_id])
-#         flash[:success] = "Nice comment!"
-#         redirect_to event_path(event)
-#       elsif resource == 'Group'
-#         group = Group.find(params[:group_id])
-#         flash[:success] = "Nice comment!"
-#         redirect_to group_path(group)
-#       end
-#   else
-#     flash[:alert] = "Unable to save comment"
-#     redirect_to :back
-#   end
-# end
-
-
   def destroy
     comment = Comment.find(params[:id])
-    if comment.destroy
-      if resource == "Event"
-          event = Event.find(params[:event_id])
-          flash[:success] = "Comment destroyed"
-          redirect_to event_path(event)
-        elsif resource == "Group"
-          group = Group.find(params[:group_id])
-          flash[:success] = "Comment destroyed"
-          redirect_to group_path(group)
+    respond_to do |format|
+      if comment.destroy
+        format.json { render json: comment }
+      else
+        format.json { redner json: comment.errors }
       end
-    else
-      flash[:alert] = "Unable to delete comment"
-      redirect_to :back
     end
   end
 

@@ -129,7 +129,7 @@
               <%= comment.body %>
               <% if current_user == comment.author %>
                 <div class='right'>
-                  <%= link_to "Delete comment", group_comment_path(@group, comment), method: :delete, data: {confirm: "Are you Sure?"} %>
+                  <%= link_to "Delete comment", "#" , {id: 'delete_comment', remote: true} %>
                 </div>
                 <br>
                 <br>

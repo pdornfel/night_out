@@ -4,14 +4,51 @@ $(document).ready(function() {
       e.preventDefault();
       $.ajax({
         url: this.action,
-        method: 'post',
+        type: 'post',
         data: $(this).serialize(),
         dataType: 'json',
         success: function(response) {
-          $('#comments_list').prepend(response.body)
+          var comments_list = $('#comments_list')
+          var comment = $("<div></div>")
+          comment.addClass("panel radius")
+
+          comment.append("<strong></strong>")
+          comment.find("strong").text(response.user.first_name)
+
+          comment.append("<br><br>")
+
+          comment.append("<span></span>")
+          comment.find("span").text(response.body)
+
+          comment.append("<br><br>")
+
+          comment.append("<a></a>")
+          comment.find("a").text("Delete Comment")
+          comment.find("a").prop('id', "delete_comment")
+          // add javascript back on delete -- dom has already loaded so listener isnt being put on the new delete link
+
+          $('#comment_body').val('');
+          comments_list.prepend(comment).hide().fadeIn();
         },
         error: function(response) {
+          alert("got error")
         }
       });
   });
+
+  $('#delete_comment').on('click', function(e){
+    e.preventDefault();
+    var comment_id = this.parentElement.parentElement.id.replace('comment_', '');
+    var url = this.baseURI + '/comments/' + comment_id;
+    $.ajax({
+      url:  url,
+      type: 'delete',
+      success: function(response) {
+        var comment = $('#comment_' + response.id)
+        comment.fadeOut();
+      }
+
+    });
+  });
+
 });
