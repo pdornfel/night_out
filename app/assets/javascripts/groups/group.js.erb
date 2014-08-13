@@ -1,42 +1,40 @@
 $(document).ready(function() {
+
+    function handleFormSubmit(e){
+    e.preventDefault();
+    $.ajax({
+      url: e.target.action,
+      type: 'post',
+      data: $(this).serialize(),
+      dataType: 'json',
+      success: formSubmitSuccess,
+      error: formSubmitFailure
+    });
+  }
+
+
+  function formSubmitSuccess(response){
+    var $comment = $('<div class="panel radius"></div>');
+    var $name = $('<strong>' + response.user.first_name + '</strong>');
+    var $body = $('<span>' + response.body + '</span>');
+    var $deleteLink = $('<a href="#" class="delete_comment">' + "Delete Comment" + "</a>");
+    var $time = $('<span>' + response.created_at + '</span>');
   
-  $('#new_comment').on('submit', function(e) {
-      e.preventDefault();
-      $.ajax({
-        url: this.action,
-        type: 'post',
-        data: $(this).serialize(),
-        dataType: 'json',
-        success: function(response) {
-          var comments_list = $('#comments_list')
-          var comment = $("<div></div>")
-          comment.addClass("panel radius")
+    $comment.append($name, "<br>", $body, "<br>", $time, "<br>", $deleteLink)
 
-          comment.append("<strong></strong>")
-          comment.find("strong").text(response.user.first_name)
+    $("#comments_list").prepend($comment).hide().fadeIn();
+    $("#comment_body").val('');
+  }
 
-          comment.append("<br><br>")
+  function formSubmitFailure(response){
+    alert(response.statusText + " " + response.status)
+  }
 
-          comment.append("<span></span>")
-          comment.find("span").text(response.body)
 
-          comment.append("<br><br>")
+  $('body').on('submit', '#new_comment', handleFormSubmit);
 
-          comment.append("<a></a>")
-          comment.find("a").text("Delete Comment")
-          comment.find("a").prop('id', "delete_comment")
-          // add javascript back on delete -- dom has already loaded so listener isnt being put on the new delete link
 
-          $('#comment_body').val('');
-          comments_list.prepend(comment).hide().fadeIn();
-        },
-        error: function(response) {
-          alert("got error")
-        }
-      });
-  });
-
-  $('#delete_comment').on('click', function(e){
+  $('.delete_comment').on('click', function(e){
     e.preventDefault();
     var comment_id = this.parentElement.parentElement.id.replace('comment_', '');
     var url = this.baseURI + '/comments/' + comment_id;
@@ -47,8 +45,6 @@ $(document).ready(function() {
         var comment = $('#comment_' + response.id)
         comment.fadeOut();
       }
-
     });
   });
-
 });

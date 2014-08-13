@@ -113,12 +113,10 @@
         </tbody>
       </table>
 
-      <div id='comment_form'>
-        <%= simple_form_for([@group, @comment]) do |f| %>
-          <%= f.text_field :body, placeholder: "add a comment" %>
-          <%= f.button :submit, class: 'button tiny secondary' %>
-        <% end %>
-      </div>
+      <%= simple_form_for([@group, @comment], remote: true) do |f| %>
+        <%= f.text_field :body, placeholder: "add a comment" %>
+        <%= f.button :submit, class: 'button tiny secondary' %>
+      <% end %>
 
   <div id='comments_list'>
 
@@ -129,7 +127,7 @@
               <%= comment.body %>
               <% if current_user == comment.author %>
                 <div class='right'>
-                  <%= link_to "Delete comment", "#" , {id: 'delete_comment', remote: true} %>
+                  <%= link_to "Delete comment", "#" , {class: 'delete_comment', remote: true} %>
                 </div>
                 <br>
                 <br>
