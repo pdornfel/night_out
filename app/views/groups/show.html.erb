@@ -113,7 +113,7 @@
         </tbody>
       </table>
 
-      <%= simple_form_for([@group, @comment], remote: true) do |f| %>
+      <%= simple_form_for([@group, @comment]) do |f| %>
         <%= f.text_field :body, placeholder: "add a comment" %>
         <%= f.button :submit, class: 'button tiny secondary' %>
       <% end %>
@@ -123,18 +123,13 @@
       <%= div_for(@group.comments.order(created_at: :desc), class: "panel radius") do |comment| %>
               <strong><%= comment.author.first_name %></strong>
               <br>
-              <br>
               <%= comment.body %>
+              <br>
+              <%= comment.created_at.strftime('%I:%M%P  %B %d, %Y') %>
+              <br>
               <% if current_user == comment.author %>
-                <div class='right'>
                   <%= link_to "Delete comment", "#" , {class: 'delete_comment', remote: true} %>
-                </div>
-                <br>
-                <br>
               <% end %>
-              <div class='right'>
-                <%= comment.created_at.strftime('%I:%M%P  %B %d, %Y') %>
-              </div>
         <% end %>
 
       </div>

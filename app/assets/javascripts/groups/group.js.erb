@@ -14,7 +14,8 @@ $(document).ready(function() {
 
 
   function formSubmitSuccess(response){
-    var $comment = $('<div class="panel radius"></div>');
+    var id = response.id
+    var $comment = $('<div class="panel radius" id="comment_'+ id + '"</div>');
     var $name = $('<strong>' + response.user.first_name + '</strong>');
     var $body = $('<span>' + response.body + '</span>');
     var $deleteLink = $('<a href="#" class="delete_comment">' + "Delete Comment" + "</a>");
@@ -31,12 +32,12 @@ $(document).ready(function() {
   }
 
 
-  $('body').on('submit', '#new_comment', handleFormSubmit);
+  $('#new_comment').on('submit', handleFormSubmit);
 
 
   $('.delete_comment').on('click', function(e){
     e.preventDefault();
-    var comment_id = this.parentElement.parentElement.id.replace('comment_', '');
+    var comment_id = this.parentElement.id.replace('comment_', '');
     var url = this.baseURI + '/comments/' + comment_id;
     $.ajax({
       url:  url,
