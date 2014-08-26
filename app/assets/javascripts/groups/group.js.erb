@@ -1,8 +1,6 @@
-$(document).ready(function() {
-
-    function handleFormSubmit(e){
-    e.preventDefault();
-    $.ajax({
+$(document).on('submit', '#new_comment', function(e){
+  e.preventDefault();
+  $.ajax({
       url: e.target.action,
       type: 'post',
       data: $(this).serialize(),
@@ -10,8 +8,6 @@ $(document).ready(function() {
       success: formSubmitSuccess,
       error: formSubmitFailure
     });
-  }
-
 
   function formSubmitSuccess(response){
     var id = response.id
@@ -20,32 +16,33 @@ $(document).ready(function() {
     var $body = $('<span>' + response.body + '</span>');
     var $deleteLink = $('<a href="#" class="delete_comment">' + "Delete Comment" + "</a>");
     var $time = $('<span>' + response.created_at + '</span>');
-  
+
     $comment.append($name, "<br>", $body, "<br>", $time, "<br>", $deleteLink)
 
     $("#comments_list").prepend($comment).hide().fadeIn();
     $("#comment_body").val('');
+
   }
 
   function formSubmitFailure(response){
     alert(response.statusText + " " + response.status)
   }
 
+});
 
-  $('#new_comment').on('submit', handleFormSubmit);
+$(document).on('click', '.delete_comment', function(e){
+  e.preventDefault();
 
-
-  $('.delete_comment').on('click', function(e){
-    e.preventDefault();
     var comment_id = this.parentElement.id.replace('comment_', '');
     var url = this.baseURI + '/comments/' + comment_id;
+
     $.ajax({
       url:  url,
       type: 'delete',
+
       success: function(response) {
         var comment = $('#comment_' + response.id)
         comment.fadeOut();
       }
-    });
-  });
-});
+    })
+  })
